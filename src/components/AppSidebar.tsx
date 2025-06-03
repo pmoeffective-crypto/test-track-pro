@@ -81,13 +81,11 @@ export function AppSidebar() {
     <Sidebar className="border-r-0 bg-white/50 backdrop-blur-sm">
       <SidebarHeader className="border-b p-4">
         <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-gradient-to-r from-teal-600 to-teal-800 rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-xs">Z</span>
-          </div>
-          <div>
-            <h2 className="font-semibold text-sm">{t('platformName')}</h2>
-            <p className="text-xs text-muted-foreground">{t('platformSubtitle')}</p>
-          </div>
+          <img 
+            src="/lovable-uploads/58230061-e916-401f-819d-14d1f2264c70.png" 
+            alt="ZIDNEY Logo" 
+            className="h-8 w-auto"
+          />
         </div>
       </SidebarHeader>
       

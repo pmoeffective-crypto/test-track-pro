@@ -21,13 +21,12 @@ export function AppLayout({ children }: AppLayoutProps) {
             <div className="flex h-16 items-center justify-between px-4">
               <div className="flex items-center space-x-2">
                 <SidebarTrigger className="mr-4" />
-                <div className="flex items-center space-x-2">
-                  <div className="w-8 h-8 bg-gradient-to-r from-teal-600 to-teal-800 rounded-lg flex items-center justify-center">
-                    <span className="text-white font-bold text-sm">Z</span>
-                  </div>
-                  <h1 className="text-xl font-bold bg-gradient-to-r from-teal-600 to-teal-800 bg-clip-text text-transparent">
-                    {t('platformName')}
-                  </h1>
+                <div className="flex items-center space-x-3">
+                  <img 
+                    src="/lovable-uploads/58230061-e916-401f-819d-14d1f2264c70.png" 
+                    alt="ZIDNEY Logo" 
+                    className="h-10 w-auto"
+                  />
                 </div>
               </div>
               <LanguageToggle />
