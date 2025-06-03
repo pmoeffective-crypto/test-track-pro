@@ -14,39 +14,41 @@ import {
 } from "@/components/ui/sidebar";
 import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export function AppSidebar() {
-  const [activeItem, setActiveItem] = useState("dashboard");
   const { t } = useLanguage();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const menuItems = [
     {
       title: t('dashboard'),
-      url: "#dashboard",
+      url: "/",
       icon: Home,
       id: "dashboard"
     },
     {
       title: t('mcqTests'),
-      url: "#mcq",
+      url: "/mcq",
       icon: BookOpen,
       id: "mcq"
     },
     {
       title: t('exams'),
-      url: "#exams",
+      url: "/exams",
       icon: BarChart3,
       id: "exams"
     },
     {
       title: t('library'),
-      url: "#library",
+      url: "/library",
       icon: Library,
       id: "library"
     },
     {
       title: t('aiAssistant'),
-      url: "#assistant",
+      url: "/assistant",
       icon: Brain,
       id: "assistant"
     },
@@ -55,17 +57,25 @@ export function AppSidebar() {
   const preferenceItems = [
     {
       title: t('notifications'),
-      url: "#notifications",
+      url: "/notifications",
       icon: Bell,
       id: "notifications"
     },
     {
       title: t('settings'),
-      url: "#settings",
+      url: "/settings",
       icon: Settings,
       id: "settings"
     },
   ];
+
+  const handleNavigation = (url: string) => {
+    navigate(url);
+  };
+
+  const isActive = (url: string) => {
+    return location.pathname === url;
+  };
 
   return (
     <Sidebar className="border-r-0 bg-white/50 backdrop-blur-sm">
@@ -89,15 +99,12 @@ export function AppSidebar() {
               {menuItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton 
-                    asChild
-                    isActive={activeItem === item.id}
-                    onClick={() => setActiveItem(item.id)}
+                    isActive={isActive(item.url)}
+                    onClick={() => handleNavigation(item.url)}
                     className="transition-all duration-200 hover:bg-teal-50 data-[active=true]:bg-gradient-to-r data-[active=true]:from-teal-600 data-[active=true]:to-teal-700 data-[active=true]:text-white"
                   >
-                    <a href={item.url}>
-                      <item.icon className="w-4 h-4" />
-                      <span>{item.title}</span>
-                    </a>
+                    <item.icon className="w-4 h-4" />
+                    <span>{item.title}</span>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -112,15 +119,12 @@ export function AppSidebar() {
               {preferenceItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton 
-                    asChild
-                    isActive={activeItem === item.id}
-                    onClick={() => setActiveItem(item.id)}
+                    isActive={isActive(item.url)}
+                    onClick={() => handleNavigation(item.url)}
                     className="transition-all duration-200 hover:bg-teal-50 data-[active=true]:bg-gradient-to-r data-[active=true]:from-teal-600 data-[active=true]:to-teal-700 data-[active=true]:text-white"
                   >
-                    <a href={item.url}>
-                      <item.icon className="w-4 h-4" />
-                      <span>{item.title}</span>
-                    </a>
+                    <item.icon className="w-4 h-4" />
+                    <span>{item.title}</span>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
