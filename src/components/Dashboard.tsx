@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { StatCard } from "@/components/StatCard";
 import { QuickAccessCard } from "@/components/QuickAccessCard";
@@ -13,7 +12,7 @@ export function Dashboard() {
       subtitle: "Ce mois",
       icon: BookOpen,
       trend: "+12%",
-      color: "blue"
+      color: "blue" as const
     },
     {
       title: "Score moyen",
@@ -21,7 +20,7 @@ export function Dashboard() {
       subtitle: "Toutes matières",
       icon: Target,
       trend: "+5%",
-      color: "green"
+      color: "green" as const
     },
     {
       title: "Temps d'étude",
@@ -29,7 +28,7 @@ export function Dashboard() {
       subtitle: "Cette semaine",
       icon: Clock,
       trend: "+8h",
-      color: "purple"
+      color: "purple" as const
     },
     {
       title: "Objectifs atteints",
@@ -37,7 +36,7 @@ export function Dashboard() {
       subtitle: "Ce mois",
       icon: TrendingUp,
       trend: "80%",
-      color: "orange"
+      color: "orange" as const
     }
   ];
 
@@ -46,21 +45,21 @@ export function Dashboard() {
       title: "Nouveau test QCM",
       description: "Créer un test personnalisé",
       icon: BookOpen,
-      color: "blue",
+      color: "blue" as const,
       action: () => console.log("Nouveau test QCM")
     },
     {
       title: "Assistant IA",
       description: "Obtenir des recommandations",
       icon: Brain,
-      color: "purple",
+      color: "purple" as const,
       action: () => console.log("Assistant IA")
     },
     {
       title: "Planifier révision",
       description: "Organiser votre planning",
       icon: Calendar,
-      color: "green",
+      color: "green" as const,
       action: () => console.log("Planifier révision")
     }
   ];
