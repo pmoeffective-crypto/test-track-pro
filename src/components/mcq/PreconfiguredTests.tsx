@@ -1,18 +1,21 @@
 
+import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { BookOpen, Clock, Users, Calendar, Play, Lock } from "lucide-react";
+import { TestInterface } from "./TestInterface";
 
 export function PreconfiguredTests() {
   const { t, language } = useLanguage();
+  const [startTest, setStartTest] = useState<any>(null);
 
   const availableTests = [
     {
       id: 1,
       title: t('algebraBasics'),
-      subject: t('mathematics'),
+      subject: "mathematics",
       questions: 20,
       duration: 45,
       difficulty: t('intermediate'),
@@ -22,7 +25,7 @@ export function PreconfiguredTests() {
     {
       id: 2,
       title: t('mechanicsIntro'),
-      subject: t('physics'),
+      subject: "physics",
       questions: 15,
       duration: 30,
       difficulty: t('beginner'),
@@ -32,7 +35,7 @@ export function PreconfiguredTests() {
     {
       id: 3,
       title: t('organicChemistry'),
-      subject: t('chemistry'),
+      subject: "chemistry",
       questions: 25,
       duration: 60,
       difficulty: t('advanced'),
@@ -45,7 +48,7 @@ export function PreconfiguredTests() {
     {
       id: 4,
       title: t('finalMathExam'),
-      subject: t('mathematics'),
+      subject: "mathematics",
       questions: 30,
       duration: 90,
       deadline: "15 Juin 2024",
@@ -55,7 +58,7 @@ export function PreconfiguredTests() {
     {
       id: 5,
       title: t('physicsQuiz'),
-      subject: t('physics'),
+      subject: "physics",
       questions: 20,
       duration: 60,
       deadline: "18 Juin 2024",
@@ -63,6 +66,30 @@ export function PreconfiguredTests() {
       canViewResults: false
     }
   ];
+
+  const handleStartTest = (test: any) => {
+    setStartTest({
+      subject: test.subject,
+      questionCount: test.questions,
+      duration: test.duration,
+      hasTimeLimit: true,
+      testType: "preconfigured",
+      title: test.title
+    });
+  };
+
+  const handleExitTest = () => {
+    setStartTest(null);
+  };
+
+  if (startTest) {
+    return (
+      <TestInterface
+        config={startTest}
+        onExit={handleExitTest}
+      />
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -76,7 +103,7 @@ export function PreconfiguredTests() {
                 <div className="flex items-start justify-between">
                   <div>
                     <CardTitle className="text-lg">{test.title}</CardTitle>
-                    <CardDescription>{test.subject}</CardDescription>
+                    <CardDescription>{t(test.subject)}</CardDescription>
                   </div>
                   <Badge variant="secondary">{test.difficulty}</Badge>
                 </div>
@@ -96,7 +123,10 @@ export function PreconfiguredTests() {
                     <span>{test.participants} {t('participants')}</span>
                   </div>
                 </div>
-                <Button className="w-full bg-teal-600 hover:bg-teal-700">
+                <Button 
+                  className="w-full bg-teal-600 hover:bg-teal-700"
+                  onClick={() => handleStartTest(test)}
+                >
                   <Play className="w-4 h-4 mr-2" />
                   {t('startTest')}
                 </Button>
@@ -119,7 +149,7 @@ export function PreconfiguredTests() {
                       <Calendar className="w-5 h-5 text-orange-600" />
                       {test.title}
                     </CardTitle>
-                    <CardDescription>{test.subject}</CardDescription>
+                    <CardDescription>{t(test.subject)}</CardDescription>
                   </div>
                   <Badge variant="outline" className="border-orange-300 text-orange-700">
                     {t('scheduled')}
@@ -143,7 +173,10 @@ export function PreconfiguredTests() {
                     {t('resultsNotVisible')}
                   </p>
                 </div>
-                <Button className="w-full bg-orange-600 hover:bg-orange-700">
+                <Button 
+                  className="w-full bg-orange-600 hover:bg-orange-700"
+                  onClick={() => handleStartTest(test)}
+                >
                   <Play className="w-4 h-4 mr-2" />
                   {t('startTest')}
                 </Button>

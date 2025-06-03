@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Switch } from "@/components/ui/switch";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Play, Settings } from "lucide-react";
+import { TestInterface } from "./TestInterface";
 
 export function CreateCustomTest() {
   const { t } = useLanguage();
@@ -17,6 +18,7 @@ export function CreateCustomTest() {
     duration: 30,
     hasTimeLimit: true
   });
+  const [startTest, setStartTest] = useState(false);
 
   const subjects = [
     { value: "mathematics", label: t('mathematics') },
@@ -26,6 +28,26 @@ export function CreateCustomTest() {
     { value: "arabic", label: t('arabic') },
     { value: "french", label: t('french') }
   ];
+
+  const handleStartTest = () => {
+    setStartTest(true);
+  };
+
+  const handleExitTest = () => {
+    setStartTest(false);
+  };
+
+  if (startTest) {
+    return (
+      <TestInterface
+        config={{
+          ...testConfig,
+          testType: "custom"
+        }}
+        onExit={handleExitTest}
+      />
+    );
+  }
 
   return (
     <div className="max-w-2xl mx-auto space-y-6">
@@ -112,6 +134,7 @@ export function CreateCustomTest() {
             className="w-full bg-teal-600 hover:bg-teal-700" 
             size="lg"
             disabled={!testConfig.subject}
+            onClick={handleStartTest}
           >
             <Play className="w-5 h-5 mr-2" />
             {t('startTest')}
