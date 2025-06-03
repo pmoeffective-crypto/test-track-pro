@@ -1,39 +1,43 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { StatCard } from "@/components/StatCard";
 import { QuickAccessCard } from "@/components/QuickAccessCard";
 import { BookOpen, Brain, Calendar, TrendingUp, Target, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export function Dashboard() {
+  const { t, language } = useLanguage();
+
   const stats = [
     {
-      title: "Tests réalisés",
+      title: t('testsCompleted'),
       value: "24",
-      subtitle: "Ce mois",
+      subtitle: t('thisMonth'),
       icon: BookOpen,
       trend: "+12%",
       color: "blue" as const
     },
     {
-      title: "Score moyen",
+      title: t('averageScore'),
       value: "76%",
-      subtitle: "Toutes matières",
+      subtitle: t('allSubjects'),
       icon: Target,
       trend: "+5%",
       color: "green" as const
     },
     {
-      title: "Temps d'étude",
+      title: t('studyTime'),
       value: "32h",
-      subtitle: "Cette semaine",
+      subtitle: t('thisWeek'),
       icon: Clock,
       trend: "+8h",
       color: "purple" as const
     },
     {
-      title: "Objectifs atteints",
+      title: t('goalsAchieved'),
       value: "8/10",
-      subtitle: "Ce mois",
+      subtitle: t('thisMonth'),
       icon: TrendingUp,
       trend: "80%",
       color: "orange" as const
@@ -42,37 +46,49 @@ export function Dashboard() {
 
   const quickActions = [
     {
-      title: "Nouveau test QCM",
-      description: "Créer un test personnalisé",
+      title: t('newMcqTest'),
+      description: t('createCustomTest'),
       icon: BookOpen,
       color: "blue" as const,
       action: () => console.log("Nouveau test QCM")
     },
     {
-      title: "Assistant IA",
-      description: "Obtenir des recommandations",
+      title: t('aiAssistant'),
+      description: t('getRecommendations'),
       icon: Brain,
       color: "purple" as const,
       action: () => console.log("Assistant IA")
     },
     {
-      title: "Planifier révision",
-      description: "Organiser votre planning",
+      title: t('planRevision'),
+      description: t('organizeSchedule'),
       icon: Calendar,
       color: "green" as const,
       action: () => console.log("Planifier révision")
     }
   ];
 
+  const recentTests = [
+    { subject: t('mathematics'), score: 85, date: t('daysAgo').replace('{days}', '2'), questions: 20 },
+    { subject: t('physics'), score: 72, date: t('daysAgo').replace('{days}', '3'), questions: 15 },
+    { subject: t('chemistry'), score: 91, date: t('weekAgo'), questions: 25 }
+  ];
+
+  const upcomingExams = [
+    { subject: t('mathematics'), date: "15 Juin", type: t('finalExam') },
+    { subject: t('physics'), date: "18 Juin", type: t('mcqTest') },
+    { subject: t('chemistry'), date: "22 Juin", type: t('partialExam') }
+  ];
+
   return (
     <div className="space-y-6">
       {/* En-tête */}
       <div className="flex flex-col space-y-2">
-        <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-          Tableau de bord
+        <h1 className="text-3xl font-bold bg-gradient-to-r from-teal-600 to-teal-800 bg-clip-text text-transparent">
+          {t('dashboardTitle')}
         </h1>
         <p className="text-muted-foreground">
-          Suivez vos progrès et accédez rapidement à vos outils d'étude
+          {t('dashboardSubtitle')}
         </p>
       </div>
 
@@ -87,7 +103,7 @@ export function Dashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Accès rapide */}
         <div className="lg:col-span-2 space-y-4">
-          <h2 className="text-xl font-semibold">Accès rapide</h2>
+          <h2 className="text-xl font-semibold">{t('quickAccess')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {quickActions.map((action, index) => (
               <QuickAccessCard key={index} {...action} />
@@ -97,20 +113,16 @@ export function Dashboard() {
           {/* Tests récents */}
           <Card>
             <CardHeader>
-              <CardTitle>Tests récents</CardTitle>
-              <CardDescription>Vos dernières performances</CardDescription>
+              <CardTitle>{t('recentTests')}</CardTitle>
+              <CardDescription>{t('recentPerformances')}</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {[
-                  { subject: "Mathématiques", score: 85, date: "Il y a 2 jours", questions: 20 },
-                  { subject: "Physique", score: 72, date: "Il y a 3 jours", questions: 15 },
-                  { subject: "Chimie", score: 91, date: "Il y a 1 semaine", questions: 25 }
-                ].map((test, index) => (
-                  <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                {recentTests.map((test, index) => (
+                  <div key={index} className={`flex items-center justify-between p-3 bg-gray-50 rounded-lg ${language === 'ar' ? 'flex-row-reverse' : ''}`}>
                     <div>
                       <p className="font-medium">{test.subject}</p>
-                      <p className="text-sm text-muted-foreground">{test.questions} questions • {test.date}</p>
+                      <p className="text-sm text-muted-foreground">{test.questions} {t('questions')} • {test.date}</p>
                     </div>
                     <div className="text-right">
                       <p className={`font-bold ${test.score >= 80 ? 'text-green-600' : test.score >= 60 ? 'text-orange-600' : 'text-red-600'}`}>
@@ -129,43 +141,39 @@ export function Dashboard() {
           {/* Prochains examens */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Prochains examens</CardTitle>
+              <CardTitle className="text-lg">{t('upcomingExams')}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
-              {[
-                { subject: "Mathématiques", date: "15 Juin", type: "Examen final" },
-                { subject: "Physique", date: "18 Juin", type: "Test QCM" },
-                { subject: "Chimie", date: "22 Juin", type: "Examen partiel" }
-              ].map((exam, index) => (
-                <div key={index} className="flex items-center space-x-3 p-2 hover:bg-gray-50 rounded-lg transition-colors">
-                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+              {upcomingExams.map((exam, index) => (
+                <div key={index} className={`flex items-center space-x-3 p-2 hover:bg-gray-50 rounded-lg transition-colors ${language === 'ar' ? 'flex-row-reverse space-x-reverse' : ''}`}>
+                  <div className="w-3 h-3 bg-teal-500 rounded-full"></div>
                   <div className="flex-1">
                     <p className="font-medium text-sm">{exam.subject}</p>
                     <p className="text-xs text-muted-foreground">{exam.type}</p>
                   </div>
-                  <p className="text-xs font-medium text-blue-600">{exam.date}</p>
+                  <p className="text-xs font-medium text-teal-600">{exam.date}</p>
                 </div>
               ))}
             </CardContent>
           </Card>
 
           {/* Recommandations IA */}
-          <Card className="border-purple-200 bg-gradient-to-br from-purple-50 to-blue-50">
+          <Card className="border-teal-200 bg-gradient-to-br from-teal-50 to-emerald-50">
             <CardHeader>
-              <CardTitle className="text-lg flex items-center gap-2">
-                <Brain className="w-5 h-5 text-purple-600" />
-                Recommandations IA
+              <CardTitle className={`text-lg flex items-center gap-2 ${language === 'ar' ? 'flex-row-reverse' : ''}`}>
+                <Brain className="w-5 h-5 text-teal-600" />
+                {t('aiRecommendations')}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="p-3 bg-white rounded-lg border">
-                <p className="text-sm font-medium text-purple-700">Révision suggérée</p>
+                <p className="text-sm font-medium text-teal-700">{t('suggestedRevision')}</p>
                 <p className="text-xs text-muted-foreground mt-1">
-                  Concentrez-vous sur les équations différentielles en mathématiques
+                  {t('focusOnDifferential')}
                 </p>
               </div>
-              <Button size="sm" className="w-full bg-purple-600 hover:bg-purple-700">
-                Voir plus de suggestions
+              <Button size="sm" className="w-full bg-teal-600 hover:bg-teal-700">
+                {t('seeMoreSuggestions')}
               </Button>
             </CardContent>
           </Card>
