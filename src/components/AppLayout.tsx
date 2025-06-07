@@ -4,6 +4,7 @@ import { AppSidebar } from "@/components/AppSidebar";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useUserRole } from "@/contexts/UserRoleContext";
 
 interface AppLayoutProps {
   children: React.ReactNode;
@@ -11,6 +12,7 @@ interface AppLayoutProps {
 
 export function AppLayout({ children }: AppLayoutProps) {
   const { t } = useLanguage();
+  const { userName, role } = useUserRole();
 
   return (
     <SidebarProvider>
@@ -27,6 +29,16 @@ export function AppLayout({ children }: AppLayoutProps) {
                     alt="ZIDNEY Logo" 
                     className="h-10 w-auto"
                   />
+                  <div className="ml-3 hidden sm:block">
+                    <p className="text-sm font-medium text-foreground">
+                      Connecté en tant que {userName}
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      {role === 'admin' ? 'Administrateur' : 
+                       role === 'teacher' ? 'Professeur' :
+                       role === 'parent' ? 'Parent' : 'Étudiant'}
+                    </p>
+                  </div>
                 </div>
               </div>
               <LanguageToggle />

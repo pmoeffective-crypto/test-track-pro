@@ -17,10 +17,11 @@ import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useUserRole } from "@/contexts/UserRoleContext";
 import { useNavigate, useLocation } from "react-router-dom";
+import { UserSelector } from "@/components/UserSelector";
 
 export function AppSidebar() {
-  const { t } = useLanguage();
-  const { role, setRole } = useUserRole();
+const { t } = useLanguage();
+  const { role, userName } = useUserRole();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -164,22 +165,15 @@ export function AppSidebar() {
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-sm font-medium truncate">
+              {userName}
+            </p>
+            <p className="text-xs text-muted-foreground truncate">
               {role === 'admin' ? 'Administrateur' : 
                role === 'teacher' ? 'Professeur' :
                role === 'parent' ? 'Parent' : 'Étudiant'}
             </p>
-            <p className="text-xs text-muted-foreground truncate">
-              {role}@zidney.com
-            </p>
           </div>
-          <Button 
-            variant="ghost" 
-            size="sm" 
-            onClick={() => setRole('student')}
-            className="text-xs"
-          >
-            Changer
-          </Button>
+          <UserSelector />
         </div>
       </SidebarFooter>
     </Sidebar>
