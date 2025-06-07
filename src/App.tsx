@@ -16,6 +16,10 @@ import Lives from "./pages/Lives";
 import Notifications from "./pages/Notifications";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
+import UserManagement from "./pages/admin/UserManagement";
+import RoleManagement from "./pages/admin/RoleManagement";
+import ContentManagement from "./pages/admin/ContentManagement";
+import SystemSettings from "./pages/admin/SystemSettings";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +41,10 @@ const App = () => (
             <Route path="/lives" element={<Lives />} />
             <Route path="/notifications" element={<Notifications />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/admin/users" element={<UserManagement />} />
+            <Route path="/admin/roles" element={<RoleManagement />} />
+            <Route path="/admin/content" element={<ContentManagement />} />
+            <Route path="/admin/system" element={<SystemSettings />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
