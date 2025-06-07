@@ -2,7 +2,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { StatCard } from "@/components/StatCard";
 import { QuickAccessCard } from "@/components/QuickAccessCard";
-import { BookOpen, Brain, Calendar, TrendingUp, Target, Clock } from "lucide-react";
+import { BookOpen, Brain, Calendar, TrendingUp, Target, Clock, MessageSquare, Video, Users, BarChart, PieChart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -27,20 +27,76 @@ export function Dashboard() {
       color: "green" as const
     },
     {
-      title: t('studyTime'),
-      value: "32h",
-      subtitle: t('thisWeek'),
-      icon: Clock,
-      trend: "+8h",
+      title: "Sujets forum",
+      value: "18",
+      subtitle: "Cette semaine",
+      icon: MessageSquare,
+      trend: "+4",
       color: "purple" as const
     },
     {
-      title: t('goalsAchieved'),
-      value: "8/10",
-      subtitle: t('thisMonth'),
-      icon: TrendingUp,
-      trend: "80%",
+      title: "Lives programmés",
+      value: "5",
+      subtitle: "Cette semaine",
+      icon: Video,
+      trend: "+2",
       color: "orange" as const
+    }
+  ];
+
+  // Nouvelles statistiques Forum
+  const forumStats = [
+    {
+      title: "Discussions actives",
+      value: "12",
+      subtitle: "Cette semaine",
+      icon: MessageSquare,
+      trend: "+3",
+      color: "blue" as const
+    },
+    {
+      title: "Réponses publiées",
+      value: "45",
+      subtitle: "Ce mois",
+      icon: TrendingUp,
+      trend: "+15",
+      color: "green" as const
+    },
+    {
+      title: "Sujets suivis",
+      value: "8",
+      subtitle: "Vos abonnements",
+      icon: Users,
+      trend: "+2",
+      color: "purple" as const
+    }
+  ];
+
+  // Nouvelles statistiques Lives
+  const livesStats = [
+    {
+      title: "En direct maintenant",
+      value: "2",
+      subtitle: "Sessions actives",
+      icon: Video,
+      trend: "🔴 Live",
+      color: "red" as const
+    },
+    {
+      title: "Audience moyenne",
+      value: "67",
+      subtitle: "Spectateurs/live",
+      icon: Users,
+      trend: "+12%",
+      color: "blue" as const
+    },
+    {
+      title: "Rediffusions vues",
+      value: "234",
+      subtitle: "Ce mois",
+      icon: BarChart,
+      trend: "+28%",
+      color: "green" as const
     }
   ];
 
@@ -99,6 +155,57 @@ export function Dashboard() {
         ))}
       </div>
 
+      {/* Nouvelles statistiques Forum et Lives */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Statistiques Forum */}
+        <Card>
+          <CardHeader>
+            <CardTitle className={`flex items-center gap-2 ${language === 'ar' ? 'flex-row-reverse' : ''}`}>
+              <MessageSquare className="w-5 h-5 text-purple-600" />
+              Forum - Activité
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {forumStats.map((stat, index) => (
+                <div key={index} className="text-center p-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-center justify-center mb-2">
+                    <stat.icon className="w-6 h-6 text-purple-600" />
+                  </div>
+                  <div className="text-2xl font-bold text-purple-700">{stat.value}</div>
+                  <div className="text-xs text-muted-foreground">{stat.subtitle}</div>
+                  <div className="text-xs text-green-600 font-medium">{stat.trend}</div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Statistiques Lives */}
+        <Card>
+          <CardHeader>
+            <CardTitle className={`flex items-center gap-2 ${language === 'ar' ? 'flex-row-reverse' : ''}`}>
+              <Video className="w-5 h-5 text-orange-600" />
+              Lives - Performance
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {livesStats.map((stat, index) => (
+                <div key={index} className="text-center p-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-center justify-center mb-2">
+                    <stat.icon className="w-6 h-6 text-orange-600" />
+                  </div>
+                  <div className="text-2xl font-bold text-orange-700">{stat.value}</div>
+                  <div className="text-xs text-muted-foreground">{stat.subtitle}</div>
+                  <div className="text-xs text-green-600 font-medium">{stat.trend}</div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
       {/* Contenu principal */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Accès rapide */}
@@ -154,6 +261,56 @@ export function Dashboard() {
                   <p className="text-xs font-medium text-teal-600">{exam.date}</p>
                 </div>
               ))}
+            </CardContent>
+          </Card>
+
+          {/* Activité Forum récente */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Forum - Activité récente</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div className="space-y-2">
+                <div className="p-2 bg-purple-50 rounded-lg border">
+                  <p className="text-sm font-medium">Nouveau sujet créé</p>
+                  <p className="text-xs text-muted-foreground">"Méthodes d'apprentissage efficaces"</p>
+                  <p className="text-xs text-purple-600">Il y a 2h</p>
+                </div>
+                <div className="p-2 bg-blue-50 rounded-lg border">
+                  <p className="text-sm font-medium">3 nouvelles réponses</p>
+                  <p className="text-xs text-muted-foreground">Dans "Préparation aux examens"</p>
+                  <p className="text-xs text-blue-600">Il y a 4h</p>
+                </div>
+              </div>
+              <Button size="sm" variant="outline" className="w-full">
+                <MessageSquare className="w-4 h-4 mr-2" />
+                Voir le forum
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* Lives à venir */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Lives à venir</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div className="space-y-2">
+                <div className="p-2 bg-orange-50 rounded-lg border">
+                  <p className="text-sm font-medium">Équations du second degré</p>
+                  <p className="text-xs text-muted-foreground">Aujourd'hui à 14h00</p>
+                  <p className="text-xs text-orange-600">Prof. Dubois</p>
+                </div>
+                <div className="p-2 bg-green-50 rounded-lg border">
+                  <p className="text-sm font-medium">Chimie organique</p>
+                  <p className="text-xs text-muted-foreground">Demain à 16h00</p>
+                  <p className="text-xs text-green-600">Dr. Martin</p>
+                </div>
+              </div>
+              <Button size="sm" variant="outline" className="w-full">
+                <Video className="w-4 h-4 mr-2" />
+                Voir tous les lives
+              </Button>
             </CardContent>
           </Card>
 

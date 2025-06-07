@@ -1,5 +1,5 @@
 
-import { Home, BookOpen, Brain, Library, Bell, Settings, BarChart3 } from "lucide-react";
+import { Home, BookOpen, Brain, Library, Bell, Settings, BarChart3, MessageSquare, Video } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -51,6 +51,18 @@ export function AppSidebar() {
       url: "/assistant",
       icon: Brain,
       id: "assistant"
+    },
+    {
+      title: "Forum",
+      url: "/forum",
+      icon: MessageSquare,
+      id: "forum"
+    },
+    {
+      title: "Lives",
+      url: "/lives",
+      icon: Video,
+      id: "lives"
     },
   ];
 
