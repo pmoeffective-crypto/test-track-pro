@@ -1,5 +1,5 @@
 
-import { Home, BookOpen, Brain, Library, Bell, Settings, BarChart3, MessageSquare, Video, Users, Shield } from "lucide-react";
+import { Home, BookOpen, Brain, Library, Bell, Settings, BarChart3, MessageSquare, Video, Users, Shield, Plus, FileText, FolderOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sidebar,
@@ -40,15 +40,20 @@ const { t } = useLanguage();
     const roleSpecificItems = {
       admin: [
         { title: "Gestion Utilisateurs", url: "/admin/users", icon: Users, id: "users" },
-        { title: "Modération", url: "/admin/moderation", icon: Shield, id: "moderation" },
+        { title: "Gestion des Rôles", url: "/admin/roles", icon: Shield, id: "roles" },
+        { title: "Gestion Contenu", url: "/admin/content", icon: FileText, id: "content" },
+        { title: "Paramètres Système", url: "/admin/system", icon: Settings, id: "system" },
         { title: t('library'), url: "/library", icon: Library, id: "library" },
         { title: "Forum", url: "/forum", icon: MessageSquare, id: "forum" },
         { title: "Lives", url: "/lives", icon: Video, id: "lives" }
       ],
       teacher: [
-        { title: "Mes Cours", url: "/teacher/courses", icon: BookOpen, id: "courses" },
+        { title: "Création Contenu", url: "/teacher/content", icon: Plus, id: "content-creation" },
+        { title: "Suivi Étudiants", url: "/teacher/students", icon: Users, id: "student-tracking" },
+        { title: "Bibliothèque", url: "/teacher/resources", icon: FolderOpen, id: "resources" },
         { title: t('mcqTests'), url: "/mcq", icon: BarChart3, id: "mcq" },
-        { title: t('library'), url: "/library", icon: Library, id: "library" },
+        { title: t('exams'), url: "/exams", icon: FileText, id: "exams" },
+        { title: t('aiAssistant'), url: "/assistant", icon: Brain, id: "assistant" },
         { title: "Forum", url: "/forum", icon: MessageSquare, id: "forum" },
         { title: "Lives", url: "/lives", icon: Video, id: "lives" }
       ],

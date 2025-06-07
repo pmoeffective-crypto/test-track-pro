@@ -20,6 +20,9 @@ import UserManagement from "./pages/admin/UserManagement";
 import RoleManagement from "./pages/admin/RoleManagement";
 import ContentManagement from "./pages/admin/ContentManagement";
 import SystemSettings from "./pages/admin/SystemSettings";
+import ContentCreation from "./pages/teacher/ContentCreation";
+import StudentTracking from "./pages/teacher/StudentTracking";
+import Resources from "./pages/teacher/Resources";
 
 const queryClient = new QueryClient();
 
@@ -45,6 +48,9 @@ const App = () => (
             <Route path="/admin/roles" element={<RoleManagement />} />
             <Route path="/admin/content" element={<ContentManagement />} />
             <Route path="/admin/system" element={<SystemSettings />} />
+            <Route path="/teacher/content" element={<ContentCreation />} />
+            <Route path="/teacher/students" element={<StudentTracking />} />
+            <Route path="/teacher/resources" element={<Resources />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
