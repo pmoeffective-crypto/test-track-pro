@@ -20,7 +20,7 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				'arabic': ['Amiri', 'serif'],
+				'arabic': ['Noto Sans Arabic', 'sans-serif'],
 				'sans': ['Inter', 'sans-serif'],
 			},
 			colors: {

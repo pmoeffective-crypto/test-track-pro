@@ -31,12 +31,12 @@ export function AppLayout({ children }: AppLayoutProps) {
                   />
                   <div className="ml-3 hidden sm:block">
                     <p className="text-sm font-medium text-foreground">
-                      Connecté en tant que {userName}
+                      {t('connectedAs')} {userName}
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      {role === 'admin' ? 'Administrateur' : 
-                       role === 'teacher' ? 'Professeur' :
-                       role === 'parent' ? 'Parent' : 'Étudiant'}
+                      {role === 'admin' ? t('administrator') : 
+                       role === 'teacher' ? t('teacher') :
+                       role === 'parent' ? t('parent') : t('student')}
                     </p>
                   </div>
                 </div>

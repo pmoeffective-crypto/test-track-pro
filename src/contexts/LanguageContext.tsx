@@ -1,7 +1,7 @@
 
 import React, { createContext, useContext, useState } from 'react';
 
-type Language = 'fr' | 'ar';
+type Language = 'en' | 'fr' | 'ar';
 
 interface LanguageContextType {
   language: Language;
@@ -10,6 +10,326 @@ interface LanguageContextType {
 }
 
 const translations = {
+  en: {
+    // Navigation and general
+    platformName: "ZIDNEY",
+    platformSubtitle: "Learning Platform",
+    dashboard: "Dashboard",
+    mcqTests: "MCQ Tests",
+    exams: "Exams",
+    library: "Library",
+    aiAssistant: "AI Assistant",
+    notifications: "Notifications",
+    settings: "Settings",
+    
+    // Dashboard
+    dashboardTitle: "Dashboard",
+    dashboardSubtitle: "Track your progress and performance",
+    testsCompleted: "Tests completed",
+    averageScore: "Average score",
+    studyTime: "Study time",
+    goalsAchieved: "Goals achieved",
+    thisMonth: "this month",
+    allSubjects: "all subjects",
+    thisWeek: "this week",
+    quickAccess: "Quick access",
+    newMcqTest: "New MCQ test",
+    createCustomTest: "Create custom test",
+    getRecommendations: "Get recommendations",
+    planRevision: "Plan revision",
+    organizeSchedule: "Organize your schedule",
+    recentTests: "Recent tests",
+    recentPerformances: "Your recent performances",
+    upcomingExams: "Upcoming exams",
+    aiRecommendations: "AI Recommendations",
+    suggestedRevision: "Suggested revision",
+    focusOnDifferential: "Focus on differential equations",
+    seeMoreSuggestions: "See more suggestions",
+    
+    // Subjects
+    mathematics: "Mathematics",
+    physics: "Physics",
+    chemistry: "Chemistry",
+    biology: "Biology",
+    arabic: "Arabic",
+    french: "French",
+    
+    // Time
+    daysAgo: "{days} days ago",
+    weekAgo: "1 week ago",
+    questions: "questions",
+    
+    // Exam types
+    finalExam: "Final exam",
+    mcqTest: "MCQ test",
+    partialExam: "Partial exam",
+    
+    // MCQ Module
+    mcqDescription: "Create and take custom or predefined MCQ tests",
+    overview: "Overview",
+    createTest: "Create test",
+    preconfiguredTests: "Preconfigured tests",
+    history: "History",
+    rank: "Rank",
+    timeSpent: "Time spent",
+    recentTestsDescription: "Your latest results",
+    upcomingTestsDescription: "Upcoming scheduled tests",
+    viewAll: "View all",
+    startTest: "Start test",
+    
+    // Custom test creation
+    customTestDescription: "Configure your test according to your needs",
+    subject: "Subject",
+    selectSubject: "Select a subject",
+    numberOfQuestions: "Number of questions",
+    timeLimit: "Time limit",
+    durationMinutes: "Duration (minutes)",
+    testSummary: "Test summary",
+    notSelected: "Not selected",
+    unlimited: "Unlimited",
+    
+    // Preconfigured tests
+    availableTests: "Available tests",
+    intermediate: "Intermediate",
+    beginner: "Beginner",
+    advanced: "Advanced",
+    participants: "participants",
+    scheduledTests: "Scheduled tests",
+    scheduled: "Scheduled",
+    deadline: "Deadline",
+    resultsNotVisible: "Results not visible before publication",
+    
+    // Test history
+    testHistory: "Test history",
+    exportResults: "Export results",
+    goodJob: "Good job!",
+    needsImprovement: "Needs improvement",
+    excellent: "Excellent!",
+    pending: "Pending",
+    viewDetails: "View details",
+    statistics: "Statistics",
+    resultsNotAvailable: "Results not available",
+    feedback: "Feedback",
+    duration: "Duration",
+    
+    // Exams Module
+    examsDescription: "Take structured exams in sections",
+    availableExams: "Available exams",
+    completedExams: "Completed exams",
+    scheduledExams: "Scheduled exams",
+    minutes: "minutes",
+    sections: "sections",
+    examSections: "Exam sections",
+    section: "Section",
+    startExam: "Start exam",
+    sectionResults: "Section results",
+    noScheduledExams: "No scheduled exams",
+    noScheduledExamsDescription: "No exams are currently scheduled",
+    
+    // Question types and sections
+    mcqQuestions: "MCQ questions",
+    freeQuestions: "Free questions",
+    mixedQuestions: "Mixed questions",
+    algebra: "Algebra",
+    geometry: "Geometry",
+    analysis: "Analysis",
+    mechanics: "Mechanics",
+    thermodynamics: "Thermodynamics",
+    waves: "Waves",
+    organicChemistry: "Organic chemistry",
+    inorganicChemistry: "Inorganic chemistry",
+    physicalChemistry: "Physical chemistry",
+    
+    // Section descriptions
+    algebraDescription: "Equations, functions and algebraic systems",
+    geometryDescription: "Shapes, surfaces and volumes in space",
+    analysisDescription: "Derivatives, integrals and limits",
+    mechanicsDescription: "Forces, movement and equilibrium",
+    thermodynamicsDescription: "Heat, temperature and energy",
+    wavesDescription: "Oscillations, waves and vibratory phenomena",
+    
+    // Exam names
+    midtermMathExam: "Midterm Exam - Mathematics",
+    physicsExam: "Physics Exam",
+    chemistryExam: "Chemistry Exam",
+    
+    // Library Module
+    libraryDescription: "Explore our collection of educational resources",
+    searchAndFilters: "Search and filters",
+    searchResources: "Search resources...",
+    allSubjectsFilter: "All subjects",
+    format: "Format",
+    allFormats: "All formats",
+    video: "Video",
+    audio: "Audio",
+    image: "Image",
+    type: "Type",
+    allTypes: "All types",
+    summary: "Summary",
+    course: "Course",
+    podcast: "Podcast",
+    diagrams: "Diagrams",
+    searchResults: "Search results",
+    advancedFilters: "Advanced filters",
+    downloads: "downloads",
+    view: "View",
+    download: "Download",
+    noResults: "No results",
+    noResultsDescription: "Try modifying your search criteria",
+    
+    // Library resources
+    algebraSummary: "Algebra Summary",
+    algebraSummaryDesc: "Fundamental algebra concepts with examples",
+    mechanicsVideo: "Video Course - Mechanics",
+    mechanicsVideoDesc: "Complete introduction to classical mechanics",
+    organicChemistryAudio: "Podcast - Organic Chemistry",
+    organicChemistryAudioDesc: "Discussions on organic reactions",
+    geometryDiagrams: "Geometry Diagrams",
+    geometryDiagramsDesc: "Collection of annotated geometric figures",
+    
+    // AI Assistant Module
+    assistantDescription: "Your intelligent companion to optimize your learning",
+    myRoadmap: "My roadmap",
+    recommendations: "Recommendations",
+    analytics: "Analytics",
+    preparationBac: "Baccalaureate Preparation",
+    roadmapProgress: "Track your personalized progress",
+    completedTasks: "Completed tasks",
+    remainingTasks: "Remaining tasks",
+    daysLeft: "Days left",
+    weeklyGoal: "Weekly goal",
+    upcomingTasks: "Upcoming tasks",
+    upcomingTasksDescription: "Next steps in your roadmap",
+    completed: "Completed",
+    inProgress: "In progress",
+    viewFullRoadmap: "View full roadmap",
+    
+    // Recommendations
+    personalizedRecommendations: "Personalized recommendations",
+    recommendationsDescription: "Based on your performance and goals",
+    improveAlgebra: "Improve algebra",
+    algebraWeakness: "Difficulties detected in algebra",
+    readAlgebraPDF: "Read algebra PDF",
+    practicePhysics: "Practice physics",
+    physicsImprovement: "Your physics results can be improved",
+    takePhysicsTest: "Take a physics test",
+    reviewSchedule: "Review schedule",
+    reviewReminder: "It's time to review your schedule",
+    viewSchedule: "View schedule",
+    high: "High",
+    medium: "Medium",
+    low: "Low",
+    
+    // Analytics
+    performanceAnalytics: "Performance analytics",
+    analyticsDescription: "Detailed analysis of your strengths and weaknesses",
+    strengths: "Strengths",
+    areasForImprovement: "Areas for improvement",
+    
+    // Roadmap tasks
+    reviewAlgebra: "Review algebra",
+    physicsPractice: "Physics exercises",
+    chemistryTest: "Chemistry test",
+    mathsExercises: "Math exercises",
+    physicsRevision: "Physics revision",
+    
+    // Notifications Module
+    notificationsDescription: "Manage your notifications and alerts",
+    allNotifications: "All notifications",
+    notificationSettings: "Notification settings",
+    recentNotifications: "Recent notifications",
+    markAllAsRead: "Mark all as read",
+    noNotifications: "No notifications",
+    noNotificationsDescription: "You have no new notifications",
+    
+    // Notification types
+    testReminder: "Test reminder",
+    testReminderMessage: "You have a math test scheduled tomorrow",
+    newAchievement: "New achievement",
+    achievementMessage: "Congratulations! You completed 10 tests this month",
+    newRecommendation: "New recommendation",
+    recommendationMessage: "AI suggests you review algebra",
+    deadlineWarning: "Warning: deadline",
+    deadlineMessage: "Physics exam in 3 days",
+    
+    // Notification settings
+    notificationPreferences: "Notification preferences",
+    notificationPreferencesDescription: "Choose when and how to be notified",
+    notificationTypes: "Notification types",
+    testReminders: "Test reminders",
+    testRemindersDesc: "Receive reminders before tests and exams",
+    achievements: "Achievements",
+    achievementsDesc: "Be notified of new achievements and badges",
+    recommendationsDesc: "Receive personalized AI suggestions",
+    deadlines: "Deadlines",
+    deadlinesDesc: "Alerts for important deadlines",
+    weeklySummary: "Weekly summary",
+    weeklySummaryDesc: "Receive a summary of your progress each week",
+    deliveryMethods: "Delivery methods",
+    emailNotifications: "Email notifications",
+    emailNotificationsDesc: "Receive notifications by email",
+    pushNotifications: "Push notifications",
+    pushNotificationsDesc: "Receive notifications on your device",
+    saveSettings: "Save settings",
+    
+    // Settings Module
+    settingsDescription: "Manage your account and preferences",
+    profile: "Profile",
+    preferences: "Preferences",
+    security: "Security",
+    personalInformation: "Personal information",
+    personalInformationDescription: "Manage your profile information",
+    firstName: "First name",
+    lastName: "Last name",
+    email: "Email",
+    phone: "Phone",
+    dateOfBirth: "Date of birth",
+    city: "City",
+    educationLevel: "Education level",
+    saveChanges: "Save changes",
+    
+    // Preferences
+    applicationPreferences: "Application preferences",
+    applicationPreferencesDescription: "Customize your experience",
+    language: "Language",
+    interfaceLanguage: "Interface language",
+    languageDescription: "Choose your preferred language",
+    appearance: "Appearance",
+    darkMode: "Dark mode",
+    darkModeDescription: "Use dark theme",
+    features: "Features",
+    autoSave: "Auto save",
+    autoSaveDescription: "Automatically save your progress",
+    advancedStatistics: "Advanced statistics",
+    advancedStatisticsDescription: "Show detailed analytics",
+    weeklyDigest: "Weekly digest",
+    weeklyDigestDescription: "Receive weekly summary by email",
+    savePreferences: "Save preferences",
+    
+    // Security
+    securitySettings: "Security settings",
+    securitySettingsDescription: "Protect your account",
+    twoFactorAuth: "Two-factor authentication",
+    twoFactorAuthDescription: "Add an extra layer of security",
+    loginAlerts: "Login alerts",
+    loginAlertsDescription: "Be notified of new logins",
+    sessionTimeout: "Session timeout",
+    sessionTimeoutDescription: "Duration before automatic logout (minutes)",
+    passwordSecurity: "Password security",
+    changePassword: "Change password",
+    saveSecuritySettings: "Save security settings",
+    
+    // Common actions
+    date: "Date",
+    totalQuestions: "Total questions",
+    
+    // User roles and connection
+    connectedAs: "Connected as",
+    administrator: "Administrator",
+    teacher: "Teacher",
+    student: "Student",
+    parent: "Parent"
+  },
   fr: {
     // Navigation et général
     platformName: "ZIDNEY",
@@ -321,7 +641,14 @@ const translations = {
     
     // Actions communes
     date: "Date",
-    totalQuestions: "Total des questions"
+    totalQuestions: "Total des questions",
+    
+    // Rôles et connexion utilisateur
+    connectedAs: "Connecté en tant que",
+    administrator: "Administrateur",
+    teacher: "Professeur",
+    student: "Étudiant",
+    parent: "Parent"
   },
   ar: {
     // Navigation et général
@@ -634,14 +961,21 @@ const translations = {
     
     // Actions communes
     date: "التاريخ",
-    totalQuestions: "إجمالي الأسئلة"
+    totalQuestions: "إجمالي الأسئلة",
+    
+    // أدوار المستخدم والاتصال
+    connectedAs: "متصل كـ",
+    administrator: "مدير",
+    teacher: "مدرس",
+    student: "طالب",
+    parent: "ولي أمر"
   }
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>('fr');
+  const [language, setLanguage] = useState<Language>('en');
 
   const t = (key: string): string => {
     return translations[language][key as keyof typeof translations.fr] || key;
