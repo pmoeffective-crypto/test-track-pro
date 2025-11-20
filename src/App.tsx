@@ -26,6 +26,7 @@ import Resources from "./pages/teacher/Resources";
 
 const queryClient = new QueryClient();
 
+// Main App component with routing configuration
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <LanguageProvider>
